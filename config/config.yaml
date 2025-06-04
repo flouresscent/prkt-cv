@@ -1,0 +1,27 @@
+mode: video                                             # video / live -> live in prod
+show_display: true                                   
+
+model:
+  path: yolov8s.pt
+  conf_threshold: 0.1
+
+logic:
+  iou_threshold: 0.5
+  filter:
+    window_seconds: 30.0                                # сколько секунд учитывать историю
+    min_confirmations: 60                               # сколько подряд одинаковых значений нужно для смены статуса
+
+cameras:
+  cam1:
+    url: http://185.137.146.14/mjpg/video.mjpg
+
+weather: sunny_day                                      # sunny_day / rainy_night
+
+test_videos:
+  cam1: "tests/video/{weather}/cam1.mp4"
+  cam4: "tests/video/{weather}/cam4.mp4"
+  cam6: "tests/video/{weather}/cam6.mp4"
+  cam9: "tests/video/{weather}/cam9.mp4"
+  # cam8: "tests/video/{weather}/cam4.mp4"
+  # cam5: "tests/video/{weather}/cam6.mp4"
+  # cam2: "videos/test_2.mp4"
